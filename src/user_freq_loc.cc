@@ -14,11 +14,9 @@ struct Record {
 };
 
 std::istream& operator>>(std::istream& os, Record& rec) {
-  os>>rec.uid
-    >>rec.lat
-    >>rec.lng
-    >>rec.n
-    >>rec.c;
+  os>> rec.uid
+    >> rec.lat
+    >> rec.lng;
   return os;
 }
 
@@ -37,7 +35,8 @@ void Process(const GeoDecoder& decoder, const std::string& fname) {
       addr.street.clear();
       addr.poi_list[0].poiid = 0;
       decoder.Decode(rec.lat, rec.lng, &addr);
-      ofs <<std::dec << rec.uid
+      ofs
+        << std::dec << rec.uid
         << "\t" << rec.lat
         << "\t" << rec.lng
         << "\t" << addr.adcode
